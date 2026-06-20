@@ -3,6 +3,8 @@
 ## Project Overview
 An advanced, data-driven Power BI dashboard integrated with an optimized SQL backend pipeline engineered for Senior Cost Control and Logistics Management. This project focuses on monitoring real-time material flows, tracking supply-chain latency, and identifying critical project delays. By synthesizing active warehouse inventories with construction material requests, the pipeline exposes financial exposure and accelerates site operational efficiency.
 
+## Confidentiality Note: To safeguard proprietary company data and adhere to strict non-disclosure policies, all financial figures, subcontractor names, material descriptions, and specific historical dates within this repository and dashboard previews have been completely anonymized, randomized, or synthesized. The workflows and data structures represent actual engineering logic, but do not mirror real-time or active commercial records.
+
 ## Dashboard Preview
 
 ### 1. Material Flow & Procurement Optimization
