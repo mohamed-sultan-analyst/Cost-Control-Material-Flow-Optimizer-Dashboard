@@ -1,28 +1,31 @@
-#  Cost Control and Material Flow Optimizer
+# Cost Control & Material Flow Optimizer Dashboard
 
-##  Project Overview
-An interactive Power BI dashboard designed for Senior DC Cost Control and Operations Management to monitor financial metrics, optimize material workflows, and track processing delays. This project focuses on driving cost-efficiency by providing high-level executive insights alongside granular operational data.
+## Project Overview
+An advanced, data-driven Power BI dashboard integrated with an optimized SQL backend pipeline engineered for Senior Cost Control and Logistics Management. This project focuses on monitoring real-time material flows, tracking supply-chain latency, and identifying critical project delays. By synthesizing active warehouse inventories with construction material requests, the pipeline exposes financial exposure and accelerates site operational efficiency.
 
-##  Dashboard Preview
-![Dashboard Final View](Screenshot%20(494).png)
+## Dashboard Preview
 
-##  Core Features and Visual Hierarchy
-* Executive KPIs: Tracks total estimated value, row counts, unique document numbers, and average delays.
-* Visual Data Breakdown: High-contrast charts for estimated value distribution by villa name and zone tracking.
-* Hierarchical Data Table: Clean, formatted grid emphasizing strict total balances for financial auditing.
-* Operational Slicers: Simplified filter toggles to dynamically isolate approved and canceled workflows.
+### 1. Material Flow & Procurement Optimization
+![Material Flow Overview](Screenshot%20(494).png)
 
-##  Database and SQL Integration
-To support the reporting layer, structural SQL queries were developed to pull and transform raw operational logs. The query file covers:
-* Relational joins between material orders and cost control documents.
-* Aggregations for calculating financial values and time metrics.
-* Data cleaning processes to format missing fields and handle pending transaction statuses.
+## Core Features and Visual Hierarchy
+* **Supply Chain Latency Alarms:** High-priority tracking isolating pending material orders by their exact duration of delay to mitigate site downtime.
+* **Estimated Financial Exposure:** Dynamic quantification of material asset values based on volumetric requests multiplied by localized contract rates.
+* **Zonal Logistics Breakdown:** Granular geospatial slicing mapping individual villa material consumption directly to macro-project Zones.
+* **Order Status Normalization:** Consolidated operational tracking categorized cleanly into standardized execution states (Approved vs. Canceled workflows).
 
-##  Technical Stack
-* Data Querying: SQL / Power Query
-* Data Visualization: Power BI Desktop
-* Design Principles: Clean Layouts, High-Contrast Readability, and Functional Alignment
+## Backend Data Engineering (Advanced SQL Pipeline)
+To bypass relational database limitations and deliver hyper-accurate datasets to Power BI, a high-performance SQLite pipeline was engineered utilizing advanced data transformations:
+* **Dynamic Price Recency Capture (CTE):** Implemented a specialized Common Table Expression (`Latest_Rates_2026`) that leverages internal table structures (`MAX(ROWID)`) to programmatically extract only the most recently updated unit rate per material item for the current fiscal year.
+* **Geospatial De-duplication Routing:** Constructed structural subqueries (`Unique_Zones`) to map and sanitize complex villa references to discrete project zones, ensuring 100% database normalization and preventing double-counting during lookups.
+* **Programmatic Aging Analytics (`JULIANDAY` Engine):** Engineered an automated chronological conversion layer using absolute conditional string extraction (`SUBSTR` / `CASE`) to transform standard site date stamps into standardized ISO timelines, calculating active operational latency (`Delay_Days`) relative to live system executions (`JULIANDAY('now')`).
+* **Strict Transaction Filtering:** Enforces hard data quality controls by isolating strict procurement scopes (`PL1-` order prefixes), weeding out historical redundancies (`Closed`/`Complete` statuses), and safeguarding accounting data integrity via logical null-handling (`COALESCE`).
 
-##  Deployment and Usage
-1. Review the data pipeline details in the query.sql file.
-2. Open the Cost Control & Material Flow Optimizer 2026.pbix file via Power BI Desktop to interact with the full dashboard.
+## Technical Stack
+* **Data Engineering & Query Optimization:** SQL / SQLite (Advanced CTEs, Chronological Calculations, and Structural Joins)
+* **Analytics and Visualization:** Power BI Desktop
+* **Data Architecture:** Star Schema Modeling, Performance-Driven Indexing, and Negative Space Optimization
+
+## Deployment and Usage
+1. Execute the backend SQL optimization script on the target transactional dataset to construct the standardized views.
+2. Open the `.pbix` file using Power BI Desktop to inspect the fully interactive visual matrices and drill-down KPI ledgers.
